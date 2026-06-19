@@ -105,19 +105,25 @@ The application predicts employee attrition, calculates risk scores, identifies 
 Employee_Attrition_App/
 
 │
-├── Home.py
+├── app.py
+├── Data/
+│   ├── Test.csv
+│   └── Train.csv  
 │
 ├── pages/
 │   ├── 1_Bulk_Prediction.py
 │   └── 2_Single_Prediction.py
 │
-├── models/
-│   ├── catboost_attrition_model.pkl
-│   └── feature_names.pkl
+├── model/
+│   ├── categorical_columns_catboost.pkl
+│   ├── employee_attrition_catboost.pkl
+│   └── feature_columns_catboost.pkl
 │
 ├── utils.py
 ├── requirements.txt
-├── train.csv
+├── employee-attrition-catboost.ipynb
+├── employee-attrition-EDA.ipynb
+├── kaggle link.txt
 └── README.md
 </pre>
 
@@ -154,7 +160,7 @@ pip install -r requirements.txt
 <h2>▶️ Run Application</h2>
 
 <pre>
-streamlit run Home.py
+streamlit run app.py
 </pre>
 
 <hr>
