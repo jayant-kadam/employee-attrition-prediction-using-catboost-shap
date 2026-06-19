@@ -147,21 +147,34 @@ Employee_Attrition_App/
 
 <h2>⚙️ Installation</h2>
 
-<pre>
-git clone https://github.com/your-username/Employee_Attrition_App.git
+<ol>
 
-cd Employee_Attrition_App
+<li>
+        Download all files from the GitHub repository:
+        <br>
+        <a href="https://github.com/jayant-kadam/employee-attrition-prediction-using-catboost-shap">
+            GitHub Repository
+        </a>
+</li>
 
-pip install -r requirements.txt
-</pre>
+<li>Create a project folder and copy-paste all downloaded files into it.</li>
 
-<hr>
+<li>Run the <strong>app.py</strong> file using your preferred IDE.</li>
 
-<h2>▶️ Run Application</h2>
+<li>
+In Bulk Upload the <strong>test</strong> CSV file and the model will predict attrition,  Risk Score (%), Top Contributing Factors, Retention Recommendations and generate an interactive dashboard. Click Download Results button to download all data as csv.
+</li>
 
-<pre>
-streamlit run app.py
-</pre>
+<li>Input data must be provided in <strong>.csv</strong> format for bulk upload.</li>
+
+<li>
+        The input CSV file must contain the following columns: Employee ID,	Age,	Gender,	Years at Company,	Job Role,	Monthly Income,	Work-Life Balance,	Job Satisfaction,	Performance Rating,	Number of Promotions,	Overtime,	Distance from Home,	Education Level,	Marital Status,	Number of Dependents,	Job Level,	Company Size,	Company Tenure,	Remote Work,	Leadership Opportunities,	Innovation Opportunities,	Company Reputation,	Employee Recognition.
+
+</li>
+
+<li>In Single Employee Attrition, enter all details and the model will predict attrition,  Risk Score (%), Top Contributing Factors, Retention Recommendations. Click Download Employee Report button to download all data as csv.</li>
+
+</ol>
 
 <hr>
 
