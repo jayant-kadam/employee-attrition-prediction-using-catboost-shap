@@ -185,6 +185,16 @@ This project is intended for educational, research, and portfolio purposes.
 
 <hr>
 
+<h2>🧑‍💻 Author</h2>
+
+<p>
+<strong>Jayant Kadam</strong><br>
+Data Analyst<br>
+https://www.linkedin.com/in/jayantkadam/
+</p>
+
+<hr>
+
 <p align="center">
 ⭐ If you found this project useful, consider giving it a star on GitHub.
 </p>
