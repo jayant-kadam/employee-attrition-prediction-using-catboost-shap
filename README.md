@@ -202,51 +202,51 @@ This project is intended for educational, research, and portfolio purposes.
 
 <h3>Home Page</h3>
 <p align="center">
-  <img src="screenshot/home.png" width="500">
+  <img src="screenshots/home.png" width="500">
 </p>
 
 <h3>Bulk Upload Page</h3>
 <p align="center">
-  <img src="screenshot/bulk-upload.png" width="500">
+  <img src="screenshots/bulk-upload.png" width="500">
 </p>
 
 <h3>Upload File</h3>
 <p align="center">
-  <img src="screenshot/file-upload.png" width="500">
+  <img src="screenshots/file-upload.png" width="500">
 </p>
 
 <h3>Bulk Employee Attrition Prediction</h3>
 <p align="center">
-  <img src="screenshot/bulk-prediction.png" width="500">
+  <img src="screenshots/bulk-prediction.png" width="500">
 </p>
 
 <h3>KPI & Visuals</h3>
 <p align="center">
-  <img src="screenshot/kpi.png" width="500">
+  <img src="screenshots/kpi.png" width="500">
 </p>
 
 <p align="center">
-  <img src="screenshot/dashboard.png" width="500">
+  <img src="screenshots/dashboard.png" width="500">
 </p>
 
 <h3>Downloaded CSV file</h3>
 <p align="center">
-  <img src="screenshot/bulk-download.png" width="500">
+  <img src="screenshots/bulk-download.png" width="500">
 </p>
 
 <h3>Single Employee Attrition Form Page</h3>
 <p align="center">
-  <img src="screenshot/single-employee-form.png" width="500">
+  <img src="screenshots/single-employee-form.png" width="500">
 </p>
 
 <h3>Single Employee Attrition Prediction</h3>
 <p align="center">
-  <img src="screenshot/single-employee-prediction.png" width="500">
+  <img src="screenshots/single-employee-prediction.png" width="500">
 </p>
 
 <h3>Downloaded Single Employee Attrition CSV</h3>
 <p align="center">
-  <img src="screenshot/single-employee-download.png" width="500">
+  <img src="screenshots/single-employee-download.png" width="500">
 </p>
 
 <hr>
