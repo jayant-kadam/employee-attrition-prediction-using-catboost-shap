@@ -176,8 +176,8 @@ In Bulk Upload the <strong>test</strong> CSV file and the model will predict att
 
 <li>In Single Employee Attrition, enter all details and the model will predict attrition,  Risk Score (%), Top Contributing Factors, Retention Recommendations. Click Download Employee Report button to download all data as csv.</li>
 
-<li>Also alternatively, one can try online version by clicking on link below:
-   <p> https://employee-attrition-prediction-using-catboost-shap.streamlit.app/ </p>
+<li>Also alternatively, one can try online version by clicking on link below: <br>
+    https://employee-attrition-prediction-using-catboost-shap.streamlit.app/ 
 </li>
 
 </ol>
