@@ -107,6 +107,7 @@ Employee_Attrition_App/
 │
 ├── app.py
 ├── Data/
+|   ├── kaggle link.txt
 │   ├── Test.csv
 │   └── Train.csv  
 │
@@ -119,11 +120,12 @@ Employee_Attrition_App/
 │   ├── employee_attrition_catboost.pkl
 │   └── feature_columns_catboost.pkl
 │
+├── training notebook (jupyter)/
+    ├── employee-attrition-catboost.ipynb
+    ├── employee-attrition-EDA.ipynb
 ├── utils.py
 ├── requirements.txt
-├── employee-attrition-catboost.ipynb
-├── employee-attrition-EDA.ipynb
-├── kaggle link.txt
+├── streamlit-link.txt
 └── README.md
 </pre>
 
@@ -173,6 +175,10 @@ In Bulk Upload the <strong>test</strong> CSV file and the model will predict att
 </li>
 
 <li>In Single Employee Attrition, enter all details and the model will predict attrition,  Risk Score (%), Top Contributing Factors, Retention Recommendations. Click Download Employee Report button to download all data as csv.</li>
+
+<li><pre> Also alternatively, one can try online version by clicking on link below:
+    https://employee-attrition-prediction-using-catboost-shap.streamlit.app/ </pre>
+</li>
 
 </ol>
 
