@@ -1,7 +1,10 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
+#To load streamlit. Used for: Buttons, Tables, Charts, File upload.
 
+import pandas as pd
+#Used to create and manipulate tables (DataFrames).
+
+#import Functions from utils.py
 from utils import (
     get_attrition,
     get_risk_score,
@@ -9,6 +12,7 @@ from utils import (
     generate_recommendation
 )
 
+#Creates three side-by-side sections.
 col1,col2,col3 = st.columns(3)
 
 #Column 1
@@ -197,30 +201,142 @@ if st.button(
     "Predict Attrition"
 ):
 
+    # -----------------------------
+    # Validate Inputs
+    # -----------------------------
+
+    if emp_id.strip() == "":
+
+        st.error("Employee ID cannot be empty.")
+        st.stop()
+
+    if monthly_income.strip() == "":
+
+        st.error("Monthly Income cannot be empty.")
+        st.stop()
+
+    if number_of_promotions.strip() == "":
+
+        st.error("Number of Promotions cannot be empty.")
+        st.stop()
+
+    if distance_from_home.strip() == "":
+
+        st.error("Distance from Home cannot be empty.")
+        st.stop()
+
+    if number_of_dependents.strip() == "":
+
+        st.error("Number of Dependents cannot be empty.")
+        st.stop()
+
+    if company_tenure.strip() == "":
+
+        st.error("Company Tenure cannot be empty.")
+        st.stop()
+
+    # -----------------------------
+    # Validate Numeric Inputs
+    # -----------------------------
+
+    try:
+
+        monthly_income = float(monthly_income)
+
+    except ValueError:
+
+        st.error(
+            "Monthly Income must be a numeric value."
+        )
+
+        st.stop()
+
+    try:
+
+        number_of_promotions = int(
+            number_of_promotions
+        )
+
+    except ValueError:
+
+        st.error(
+            "Number of Promotions must be an integer."
+        )
+
+        st.stop()
+
+    try:
+
+        distance_from_home = float(
+            distance_from_home
+        )
+
+    except ValueError:
+
+        st.error(
+            "Distance from Home must be a numeric value."
+        )
+
+        st.stop()
+
+    try:
+
+        number_of_dependents = int(
+            number_of_dependents
+        )
+
+    except ValueError:
+
+        st.error(
+            "Number of Dependents must be an integer."
+        )
+
+        st.stop()
+
+    try:
+
+        company_tenure = float(
+            company_tenure
+        )
+
+    except ValueError:
+
+        st.error(
+            "Company Tenure must be a numeric value."
+        )
+
+        st.stop()
+
+    # -----------------------------
+    # Create DataFrame
+    # -----------------------------
+
     df1 = pd.DataFrame({
+
         "Employee ID": [emp_id],
         "Age": [age],
         "Gender": [gender],
         "Years at Company": [years_at_company],
         "Job Role": [job_role],
-        "Monthly Income": [float(monthly_income)],
+        "Monthly Income": [monthly_income],
         "Work-Life Balance": [work_life_balance],
         "Job Satisfaction": [job_satisfaction],
         "Performance Rating": [performance_rating],
-        "Number of Promotions": [int(number_of_promotions)],
+        "Number of Promotions": [number_of_promotions],
         "Overtime": [overtime],
-        "Distance from Home": [float(distance_from_home)],
+        "Distance from Home": [distance_from_home],
         "Education Level": [education_level],
         "Marital Status": [marital_status],
-        "Number of Dependents": [int(number_of_dependents)],
+        "Number of Dependents": [number_of_dependents],
         "Job Level": [job_level],
         "Company Size": [company_size],
-        "Company Tenure": [float(company_tenure)],
+        "Company Tenure": [company_tenure],
         "Remote Work": [remote_work],
         "Leadership Opportunities": [leadership_opportunities],
         "Innovation Opportunities": [innovation_opportunities],
         "Company Reputation": [company_reputation],
         "Employee Recognition": [employee_recognition]
+
     })
 
     original_df = df1.copy()
@@ -233,15 +349,19 @@ if st.button(
         inplace=True
     )
 
-    # Predict
+    # Predict Attrition
 
     attrition = get_attrition(
         prediction_df
     )[0]
 
+    # Risk Score
+
     risk = get_risk_score(
         prediction_df
     )[0]
+
+    # SHAP Factors
 
     factor = get_top_factors(
         prediction_df
@@ -250,9 +370,10 @@ if st.button(
     # Recommendation
 
     rec = generate_recommendation(
-            prediction_df.iloc[0])
+        prediction_df.iloc[0]
+    )
 
-    # Display
+    # Display Prediction
 
     st.success(
         f"Prediction : {attrition}"
@@ -263,15 +384,17 @@ if st.button(
         f"{risk}%"
     )
 
-    st.write("Top Contributing Factors : ",
+    st.write(
+        "Top Contributing Factors:",
         factor
     )
 
-    st.write("Retention Recommendations : ",
+    st.write(
+        "Retention Recommendations:",
         rec
     )
 
-    # Download Single Employee Result
+    # Download Result
 
     original_df["Attrition"] = attrition
     original_df["Risk Score"] = risk

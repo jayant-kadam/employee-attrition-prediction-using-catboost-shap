@@ -1,13 +1,20 @@
 import streamlit as st
-import pandas as pd
-import plotly.express as px
+#To load streamlit. Used for: Buttons, Tables, Charts, File upload.
 
+import pandas as pd
+#Used to create and manipulate tables (DataFrames).
+
+import plotly.express as px
+#Used for interactive charts.
+
+#import Functions from utils.py
 from utils import (
     get_attrition,
     get_risk_score,
     get_top_factors,
     generate_recommendation,
-    get_feature_importance
+    get_feature_importance,
+    get_feature_names
 )
 
 uploaded_file = st.file_uploader(
@@ -15,21 +22,79 @@ uploaded_file = st.file_uploader(
     type=["csv"]
 )
 
+# Check If File Uploaded
 if uploaded_file is not None:
 
     df = pd.read_csv(uploaded_file)
+
+    # ------------------------------------------------
+    # Validate Employee ID Column
+    # ------------------------------------------------
+
+    if "Employee ID" not in df.columns:
+
+        st.error(
+            "The uploaded CSV must contain an 'Employee ID' column."
+        )
+
+        st.stop()
 
     original_df = df.copy()
 
     prediction_df = df.copy()
 
+    # ------------------------------------------------
+    # Drop Columns Not Used By Model
+    # ------------------------------------------------
+
     prediction_df.drop(
-        "Employee ID",
+        ["Employee ID", "Attrition"],
         axis=1,
-        inplace=True
+        inplace=True,
+        errors="ignore"
     )
 
-    # Predict
+    # ------------------------------------------------
+    # Validate Uploaded CSV Columns
+    # ------------------------------------------------
+
+    expected_columns = get_feature_names()
+
+    uploaded_columns = prediction_df.columns.tolist()
+
+    if uploaded_columns != expected_columns:
+
+        missing_columns = [
+            col for col in expected_columns
+            if col not in uploaded_columns
+        ]
+
+        extra_columns = [
+            col for col in uploaded_columns
+            if col not in expected_columns
+        ]
+
+        st.error(
+            "Uploaded CSV columns do not match the columns used during model training."
+        )
+
+        if missing_columns:
+
+            st.write("### Missing Columns")
+
+            st.write(missing_columns)
+
+        if extra_columns:
+
+            st.write("### Extra Columns")
+
+            st.write(extra_columns)
+
+        st.stop()
+
+    # ------------------------------------------------
+    # Predict Attrition
+    # ------------------------------------------------
 
     attrition = get_attrition(
         prediction_df
@@ -43,22 +108,29 @@ if uploaded_file is not None:
         prediction_df
     )
 
-    # Recommendations
-
     recommendations = []
 
-    for i, row in prediction_df.iterrows():
+    for _, row in prediction_df.iterrows():
 
         recommendations.append(
             generate_recommendation(row)
         )
 
-    # Merge
+    # ------------------------------------------------
+    # Merge Results
+    # ------------------------------------------------
 
     original_df["Attrition"] = attrition
     original_df["Risk Score"] = risk_score
     original_df["Top Contributing Factors"] = factors
     original_df["Retention Recommendations"] = recommendations
+
+    # ... keep the remaining dashboard, KPIs, charts,
+    # and download button code exactly as it is.
+
+
+
+
 
     # Display 5 Employees
 
@@ -93,6 +165,7 @@ if uploaded_file is not None:
     ].mean()
 
     col1, col2, col3, col4 = st.columns(4)
+    #Creates 4 side-by-side columns.
 
     col1.metric(
         "Total Employees",
@@ -116,6 +189,7 @@ if uploaded_file is not None:
 
     # Visuals - Row 1
 
+    #Creates 2 columns.
     chart_col1, chart_col2 = st.columns(2)
 
     with chart_col1:
@@ -170,7 +244,7 @@ if uploaded_file is not None:
         use_container_width=True
     )
 
-    # Download Button
+    #Convert Results To CSV and Download Button
 
     csv = original_df.to_csv(
         index=False
