@@ -125,11 +125,6 @@ if uploaded_file is not None:
     original_df["Top Contributing Factors"] = factors
     original_df["Retention Recommendations"] = recommendations
 
-    # ... keep the remaining dashboard, KPIs, charts,
-    # and download button code exactly as it is.
-
-
-
 
 
     # Display 5 Employees
